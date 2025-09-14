@@ -3,7 +3,7 @@
 This repository documents my journey through **Professional C++ (6th Edition)** by Marc Gregoire.  
 It contains:
 - **Code examples & exercises**: My implementations while working through the book.
-- **Notes (`CPP_NOTES.md`)**: Key takeaways, summaries, and personal insights.
+- **Notes (`notes.md`)**: Key takeaways, summaries, and personal insights.
 
 ---
 
@@ -64,7 +64,7 @@ Feel free to:
 ---
 
 ## 📖 Progress
-- [ ] Chapter 1: A Crash Course in C++ and the Standard Library
+- [x] Chapter 1: A Crash Course in C++ and the Standard Library
 - [ ] Chapter 2: Working with Strings and String Views
 - [ ] Chapter 3: Coding with Style
 - [ ] Chapter 4: Designing Professional C++ Programs
