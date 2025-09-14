@@ -3,7 +3,7 @@
 This repository documents my journey through **Professional C++ (6th Edition)** by Marc Gregoire.  
 It contains:
 - **Code examples & exercises**: My implementations while working through the book.
-- **Notes (`CPP_NOTES.md`)**: Key takeaways, summaries, and personal insights.
+- **Notes (`notes.md`)**: Key takeaways, summaries, and personal insights.
 
 ---
 
@@ -55,7 +55,7 @@ Feel free to:
 ├── ch32_design_frameworks/   # Incorporating Design Techniques and Frameworks
 ├── ch33_patterns/            # Applying Design Patterns
 ├── ch34_cross_platform/      # Developing Cross‑Platform and Cross‑Language Applications
-├── CPP_NOTES.md              # Running notes and learnings
+├── notes.md                  # Running notes and learnings
 ├── .clang-format             # Code style configuration
 ├── .gitignore                # Ignore build artifacts
 └── README.md                 # This file
