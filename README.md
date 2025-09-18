@@ -20,7 +20,7 @@ Feel free to:
 
 ## 📖 Progress
 - [x] Chapter 1: A Crash Course in C++ and the Standard Library
-- [ ] Chapter 2: Working with Strings and String Views
+- [x] Chapter 2: Working with Strings and String Views
 - [ ] Chapter 3: Coding with Style
 - [ ] Chapter 4: Designing Professional C++ Programs
 - [ ] Chapter 5: Designing with Classes
