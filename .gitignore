@@ -48,3 +48,6 @@ cmake-build-*/
 # Optional: Generated output dirs
 # bin/
 # lib/
+
+# Commits
+.gitmessage.txt

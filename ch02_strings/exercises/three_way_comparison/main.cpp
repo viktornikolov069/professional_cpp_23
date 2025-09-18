@@ -1,3 +1,4 @@
+#include <compare>
 #include <iostream>
 #include <print>
 
@@ -19,4 +20,16 @@ int main() {
     if (std::is_eq(res)) {
         std::println("equal");
     }
+
+    if (std::strong_ordering result {s1 <=> s2}; result == std::strong_ordering::less) {
+        std::println("less");
+    } else if (result == std::strong_ordering::greater) {
+        std::println("greater");
+    } else if (result == std::strong_ordering::equivalent) {
+        std::println("equivalent");
+    } else if (result == std::strong_ordering::equal) {
+        std::println("equal");
+    }
+
+    return 0;
 }
