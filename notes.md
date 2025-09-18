@@ -118,6 +118,7 @@ char* copyString(const char* str) {
 8. The way in which strings are represented across development frameworks and operating systems differs therefore it is necessary to choose the way in which string will be represented before the beginning of a project.
    - Strings can be standardized depending on the framework (Qt, MFC...)
    - A group can decide to stick with **std::string**
+9. **Invariant**: A condition that must be true during the execution of a piece of code.
 
 ## Appendices
 
