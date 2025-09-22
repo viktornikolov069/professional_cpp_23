@@ -2,7 +2,15 @@
 
 *Things I learned while reading Professional C++23, 6th Edition.*
 
-## Chapters
+## Table of Contents
+
+- [Part 1](#part-1)
+- [Part 2 / Working with Strings and String Views](#part-2--working-with-strings-and-string-views)
+- [Part 3 / Coding with Style](#part-3--coding-with-style)
+- [Appendices](#appendices)
+  - [Designated Initializers](#designated-initializers)
+  - [Uniform Initialization](#uniform-initialization)
+  - [References](#references)
 
 ### Part 1
 
@@ -22,10 +30,10 @@
 
 8. **Structured bindings**: Allows you to declare multiple variables that are initialized with elements from a data structure such as an *array*, *struct*, *pair*. A use case is to decompose the values of a container.
 
-```c++
-std::pair my_pair {"hello", 5};
-auto [the_string, the_int] {my_pair}; // Decompose using structured bindings.
-```
+   ```c++
+   std::pair my_pair {"hello", 5};
+   auto [the_string, the_int] {my_pair}; // Decompose using structured bindings.
+   ```
 
 9. **In-class initializers**: Data members in a class can be initialized directly within the class without the need of a Constructor.
 
@@ -41,10 +49,10 @@ auto [the_string, the_int] {my_pair}; // Decompose using structured bindings.
 
 15. **Short-circuit** is a powerful concept which can be used for writing safer code.
 
-```c++
-bool isValidSalary { anEmployee != nullptr && anEmployee->salary> 0 }; 
-// checks if anEmployee is a null-pointer first and then dereferences
-```
+    ```c++
+    bool isValidSalary { anEmployee != nullptr &&    anEmployee->salary> 0 };
+    // checks if anEmployee is a null-pointer first and  then dereferences
+    ```
 
 16. **Const Pointers:** A trick to figure out complicated variable declarations including `const` is to read the declaration from **right-to-left**.
     - `int* const ip` - *ip is a constant pointer to an int value*
@@ -58,20 +66,21 @@ bool isValidSalary { anEmployee != nullptr && anEmployee->salary> 0 };
 18. **References**: [See Appendix](#references)
 19. **TIP:** The recommended way to return objects from a function is to return them by value, instead of using output parameters.
     - Another option to return an object from a function without creating a copy is to pass it as an output parameter. The compiler however is smart enough to optimize the code so no copy is created if the function simply returns that object therefore the above tip is the recommended way to return objects from functions.
+
 20. `auto` strips away reference and const qualifiers and thus creates a **copy**! If you do not want a copy use `auto&` ot `const auto&`.
 21. Default values added to function arguments are allowed only in the function declaration not the function definition.
 
-```c++
-//Declaration
-class Employee {
-    void promote(int raiseAmount = DefaultRaiseAndDemeritAmount);
-}
-
-//Definition
-void Employee::promote(int raiseAmount) {
-    setSalary(getSalary() + raiseAmount);
-}
-```
+    ```c++
+    //Declaration
+    class Employee {
+      void promote(int raiseAmount =     DefaultRaiseAndDemeritAmount);
+    }
+    
+    //Definition
+    void Employee::promote(int raiseAmount) {
+      setSalary(getSalary() + raiseAmount);
+    }
+    ```
 
 ### Part 2 / Working with Strings and String Views
 
@@ -82,22 +91,22 @@ void Employee::promote(int raiseAmount) {
      - `strlen` returns the actual length of the string not the memory needed to hold it. In this case if we pass **hello** as input `strlen` will return 5 instead of 6.
      - We need to add `+1` after strlen to compensate for the output of `strlen`
 
-```c++
-char* copyString(const char* str) {
-    char* result { new char[strlen(str)] }; // BUG! Off by one!
-    //
-    strcpy(result, str);
-    return result;
-}
-```
+   ```c++
+   char* copyString(const char* str) {
+       char* result { new char[strlen(str)] }; // BUG! Off by one!
+       //
+       strcpy(result, str);
+       return result;
+   }
+   ```
 
-```c++
-char* copyString(const char* str) {
-    char* result { new char[strlen(str) + 1] };
-    strcpy(result, str);
-    return result;
-}
-```
+   ```c++
+   char* copyString(const char* str) {
+       char* result { new char[strlen(str) + 1] };
+       strcpy(result, str);
+       return result;
+   }
+   ```
 
 3. **Literal pooling**
    - String literals are stored in a read-only part of memory which allows the compiler to reuse references to equivalent string literals.
@@ -118,7 +127,15 @@ char* copyString(const char* str) {
 8. The way in which strings are represented across development frameworks and operating systems differs therefore it is necessary to choose the way in which string will be represented before the beginning of a project.
    - Strings can be standardized depending on the framework (Qt, MFC...)
    - A group can decide to stick with **std::string**
-9. **Invariant**: A condition that must be true during the execution of a piece of code.
+
+### Part 3 / Coding with Style
+
+1. **Invariant**: A condition that must be true during the execution of a piece of code.
+
+2. **Note!** Unit tests are essential for catching defects when refactoring code.
+
+3. **Tip!** The Standard Library includes a collection of predefined mathematical constants defined in `<numbers>` in the `std::numbers` namespace.
+   - Examples are `std::numbers::e, pi, sqrt2, phi`
 
 ## Appendices
 
@@ -135,15 +152,15 @@ char* copyString(const char* str) {
 2. Mixing designated initializers and non-designated initializers is not allowed.
 3. Designated initializers must be in the same order as the declaration order of the data members
 
-```c++
-struct Point {
-    int x {10};
-    int y;
-    int z;
-};
-
-Point p = {.y = 11, .z = 12}; // z is default-initialized to 0
-```
+   ```c++
+   struct Point {
+       int x {10};
+       int y;
+       int z;
+   };
+   
+   Point p = {.y = 11, .z = 12}; // z is default-initialized    to 0
+   ```
 
 ### Uniform Initialization
 
@@ -162,21 +179,21 @@ Point p = {.y = 11, .z = 12}; // z is default-initialized to 0
    - We only change the referred value.
 3. References can be made to literals and temporary values only if they are `const`.
 
-```c++
-int& unnamedRef1 { 5 };// DOES NOT COMPILE
-const int& unnamedRef2 { 5 }; // Works as expected
-```
+   ```c++
+   int& unnamedRef1 { 5 };// DOES NOT COMPILE
+   const int& unnamedRef2 { 5 }; // Works as expected
+   ```
 
 4. In the case of a function returning a temporary object. Creating a const reference to that object will keep it alive until the reference goes out of scope.
 
-```c++
-string getString() { 
-    return "Hello world!"; 
-}
-
-string& string1 { getString() };// DOES NOT COMPILE
-const string& string2 { getString() }; // Works as expected
-```
+   ```c++
+   string getString() { 
+       return "Hello world!"; 
+   }
+   
+   string& string1 { getString() };// DOES NOT COMPILE
+   const string& string2 { getString() }; // Works as expected
+   ```
 
 5. We cannot declare a reference to a reference or a pointer to a reference. `int& &` and `int&*` are not allowed.
 6. A class data member can also be declared as a reference but it must be initialized through a constructor initializer list.
